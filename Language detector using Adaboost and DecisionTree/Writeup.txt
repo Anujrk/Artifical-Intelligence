@@ -1,0 +1,41 @@
+—> Wikipedia Language Classification 
+
+1.Features :
+The parameters were adopted from "https://en.wikipedia.org/wiki/Dutch_orthography" and "https://en.wikipedia.org/wiki/English_orthography"
+a. Word_Length : Checks for average word length if less than six 
+b. contains_en : Checks if the sentence contains Dutch word en
+c. common_dutch_words : Checks if the sentence contains common dutch words such as met, ze, er,..
+d. common_english_words : Checks if the sentence contains common english words such as be, me, i, him ,..
+e. contains_van : Checks if sentence contains Dutch word  van
+f. contain_de_het : Checks if sentence contains Dutch articles: de and het
+g. contains_a_an_the : Checks if the sentence contains English articles : a, an and the
+h. contains_een : Checks if sentence contains Dutch articles: een
+i. contains_and : Checks if the sentence contains English conjunction : and
+j. contains_X : Word X is least used in dutch language 
+k. contains_Q : Word Q is least used in dutch language 
+l. contains_E : Word E is the most Frequently used letter in Dutch alphabet
+m. contains_ik : Checks if sentence contains Dutch word  ik
+n. contains_voor : Checks if sentence contains Dutch word  voor
+
+2.Decision Tree Learning:
+The data is first collected, broken down into sentences where the first word contains the result Language of the sentence.
+The sentence is then passed through the above features to create a table of boolean values of the sentence.
+The table is then trained to get the desired result which is already known.
+The decision tree during training multiples the factor with entropy which is given by :
+∑ - value(P) ln value(P)
+which is then used to find the gain_attributes for the sentence.
+For every gain attribute count of boolean values are calculated which predicts the result of that stage .Result is calculated with help of highest information gain built with decrease in entropy.
+Testing file takes 15 words in a sentence and successfully builds a tree based on features provided to provide an efficiency of about 92% in predicting the language of a sentence. Only in case where none of the features are included in the sentence , such as the words are chosen in random against the feature the model fails to compute the result hence outputs an unknown language.
+
+3. Adaptive boosting:
+The data is first collected, broken down into sentences where the first word contains the result Language of the sentence.
+The sentence is then passed through the above features to create a table of boolean values of the sentence.
+The table is then trained to get the desired result which is already known.
+The adaptive boosting technique uses decision stump(initialized at 100) for weak learners.
+The gain obtained (same as in decision tree) is multiplied with weights.
+Weights are calculated as log(1-error/error).
+The hard to classify instances are put more weight whereas less for the ones that can be easily handled.
+A threshold for the features is provided and Adaboost decides whether the example lies on left or right of model's threshold.
+Accordingly results are created and sentences are predicted. 
+100 stumps were used to create a fit training model and prediction.
+Testing file takes 15 words in a sentence and successfully builds a tree based on features provided to provide an efficiency of about 95% in predicting the language of a sentence. Only in case where none of the features are included in the sentence , such as the words are chosen in random against the feature the model fails to compute the result hence outputs an unknown language.

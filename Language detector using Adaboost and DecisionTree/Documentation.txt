@@ -1,0 +1,20 @@
+Documentation :
+
+1. Main file :  Main.py
+
+2. Input to the program : 
+	For Training  --- 'Syntax :train <examples> <hypothesisOut> <learning-type>'
+	
+	For Testing   --- 'Syntax :predict <hypothesis> <file> <testing-type(dt or ada)>'
+
+Train.dat contains the training sentences with 15 words
+Test.dat contains the testing sentences with 15 words
+
+HypothesisOut is the trained model created using training file i.e train.dat
+
+3. Example of input
+
+	For Training of decisionTree = train train.dat dt-hypothesis dt
+	For testing with decisionTree = predict dt-hypothesis test.dat dt
+
+The same is applied while training and resting for Adaboost where dt is replaced with ada.
